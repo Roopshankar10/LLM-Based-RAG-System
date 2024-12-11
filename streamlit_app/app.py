@@ -1,4 +1,3 @@
-
 import streamlit as st
 import requests
 
@@ -8,15 +7,35 @@ st.title("LLM-based RAG Search")
 query = st.text_input("Enter your query:")
 
 if st.button("Search"):
-    # Make a POST request to the Flask API
-    print("accessing ", "<Flask app string>", " with query ", query)
-    response = None # call the flask app and get response
+    if query.strip():
+        st.write(f"Searching for: {query}")
+        
+        # Flask API endpoint
+        flask_url = "http://localhost:5001/query"  # URL of the Flask app
 
-    # implement the flask call here
-    
-    if response.status_code == 200:
-        # Display the generated answer
-        answer = response.json().get('answer', "No answer received.")
-        st.write("Answer:", answer)
+        try:
+            # Make a POST request to the Flask API
+            response = requests.post(flask_url, json={"query": query})
+
+            if response.status_code == 200:
+                # Display the generated answer
+                data = response.json()
+                answer = data.get('answer', "No answer received.")
+                sources = data.get('sources', [])
+
+                st.subheader("Answer:")
+                st.write(answer)
+
+                # Display sources if available
+                if sources:
+                    st.subheader("Sources:")
+                    for source in sources:
+                        st.write(f"- {source}")
+                else:
+                    st.write("No sources available.")
+            else:
+                st.error(f"Error {response.status_code}: {response.json().get('error', 'Unknown error')}")
+        except Exception as e:
+            st.error(f"Failed to connect to the Flask API: {e}")
     else:
-        st.error(f"Error: {response.status_code}")
+        st.warning("Please enter a query.")
