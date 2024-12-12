@@ -1,13 +1,17 @@
+import os
 from flask import Flask, request, jsonify
 from utils import search_articles, fetch_article_content, create_vecotrs, load_vector_store
 from langchain_groq import ChatGroq
 from langchain.chains import RetrievalQAWithSourcesChain
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
 # Load vector store and LLM
 llm = ChatGroq(
-    groq_api_key="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",
+    groq_api_key=os.getenv('groq_api_key'),
     model_name="llama-3.3-70b-versatile"
 )
 
