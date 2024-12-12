@@ -13,6 +13,9 @@ from langchain.embeddings import HuggingFaceEmbeddings
 import pickle
 import langchain
 from langchain.schema import Document
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Embedding model
 model_name = "all-mpnet-base-v2"
@@ -23,13 +26,14 @@ def search_articles(query):
     Searches for articles related to the query using Serper API.
     Returns a list of dictionaries containing article URLs, headings, and text.
     """
+    serp_api=os.getenv('serp_api_key')
     params = {
     "q": query,
     "location": "Austin, Texas, United States",
     "hl": "en",
     "gl": "us",
     "google_domain": "google.com",
-    "api_key": "86cb3126078e6a54e7382695f09764d25e153980590b163ee96120b4dc16fbc3"
+    "api_key": serp_api
     }
 
     search = GoogleSearch(params)
