@@ -1,7 +1,7 @@
 Instructions to Set Up and Run the Application
 # 1.Environment Setup:
-SERP_API_KEY=your_serp_api_key_here
-GROQ_API_KEY=your_groq_api_key_here
+### SERP_API_KEY=your_serp_api_key_here
+### GROQ_API_KEY=your_groq_api_key_here
 Make sure to replace your_serp_api_key_here and your_groq_api_key_here with your actual API keys.
 
 # 2.Running the Flask App:
