@@ -1,21 +1,21 @@
 Instructions to Set Up and Run the Application
-1.Environment Setup:
-# SERP_API_KEY=your_serp_api_key_here
-# GROQ_API_KEY=your_groq_api_key_here
+# 1.Environment Setup:
+SERP_API_KEY=your_serp_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
 Make sure to replace your_serp_api_key_here and your_groq_api_key_here with your actual API keys.
 
-2.Running the Flask App:
+# 2.Running the Flask App:
 Navigate to the flask_app directory and run the app.py file using the following command:
-# python app.py
+`python app.py`
 This will start the Flask application on http://localhost:5001.
 
-3.Running the Streamlit App:
+# 3.Running the Streamlit App:
 Once the Flask app is running, navigate to the streamlit_app directory and run the app.py file using the command:
-# streamlit run app.py
+`streamlit run app.py`
 The Streamlit app will then open in your browser where you can interact with the LLM-based RAG search.
 
 
-4.Interacting with the Streamlit App:
+# 4.Interacting with the Streamlit App:
 After running the Streamlit app, the interface will open automatically in your default web browser. You will see an input field where you can enter your query.
 Enter your query in the input field.
 After entering your query, click the "Search" button to submit it.
